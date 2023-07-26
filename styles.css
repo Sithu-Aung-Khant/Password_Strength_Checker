@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --red: #f00;
+    --yellow: #eedc3d;
+    --green: #18e605;
+    --white: var(--white);
+    --gray: #666;
+    --darkgray: #333;
+    --black: #111;
+
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--white);
+}
+
+.container {
+    position: relative;
+    width: 400px;
+    background: var(--darkgray);
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 1px solid var(--black);
+    gap: 10px;
+    padding-bottom: 70px;
+}
+
+.container h2 {
+    font-weight: 500;
+    color: var(--gray);
+}
+
+.container .inputArea {
+    width: 100%;
+    position: relative;
+}
+
+.container .inputArea input {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    color: aliceblue;
+    background: #222;
+    border: none;
+    outline: none;
+}
+.container .strengthMeter {
+    height: 3px;
+    background: #222;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+/* Style for the ::before pseudo-element */
+.container .strengthMeter::before {
+    width: 0;
+    background: var(--red);
+    content: "";
+    position: absolute;  
+    height: 100%;
+    transition: 0.5s;  
+}
+
+/* Styles for different password strength levels */
+.container.weak .strengthMeter::before {
+    width: 10%;
+    background: var(--red);
+    filter: drop-shadow(0 0 5px var(--red)) drop-shadow(0 0 10px #f33) drop-shadow(0 0 20px var(--red));
+}
+
+.container.moderate .strengthMeter::before {
+    width: 70%;
+    background: var(--yellow);
+    filter: drop-shadow(0 0 5px var(--yellow)) drop-shadow(0 0 10px var(--yellow)) drop-shadow(0 0 20px var(--yellow));
+}
+
+.container.strong .strengthMeter::before {
+    width: 100%;
+    background: var(--green);
+    filter: drop-shadow(0 0 5px var(--green)) drop-shadow(0 0 10px var(--green)) drop-shadow(0 0 20px var(--green));
+}
+
+/* Styles for the ::after pseudo-element */
+.container .strengthMeter::after {
+    position: absolute;
+    top: -45px;
+    left: 30px;
+    transition: 0.5s;
+    color: aliceblue;
+}
+
+.container.weak .strengthMeter::after {
+   content: "Week Password";
+   color: var(--red);
+   filter: drop-shadow(0 0 5px var(--red));
+}
+
+.container.moderate .strengthMeter::after {
+    content: "Moderate Password";
+    color: var(--yellow);
+    filter: drop-shadow(0 0 5px var(--yellow));
+}
+
+.container.strong .strengthMeter::after {
+    content: "Strong Password";
+    color: var(--green);
+    filter: drop-shadow(0 0 5px var(--green));
+}
+
+.show {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    background: var(--darkgray);
+    border: 6px solid #222;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.show::before {
+    content: "Show";
+    font-size: 0.6em;
+    color: aliceblue;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.show.hide::before {
+    content: "Hide";
+}
