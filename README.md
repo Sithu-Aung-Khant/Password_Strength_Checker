@@ -1,5 +1,3 @@
-Sure, I can do that. Here is the README.md file for your password strength checker:
-
 ## Password Strength Checker
 
 This is a simple password strength checker that uses the following criteria to evaluate the strength of a password:
