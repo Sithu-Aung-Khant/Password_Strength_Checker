@@ -5,15 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <title>Password Checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- PASSWORD STRENGTH CHECKER -->
+
     <div class="container">
         <h2>Password Strength Check</h2>
         <div class="inputArea">
-            <input type="password" name="YourPassword" id="YourPassword" placeholder="Password">
+            <input type="password" name="YourPassword" id="CheckPassword" placeholder="Password">
             <div class="show"></div>
         </div>
         <div class="strengthMeter"></div>
+    </div>
+
+    <!-- PASSWORD VALIDATION CHECKER -->
+
+    <div class="wrapper">
+        <h2>Password Validation Check</h2>
+        <div class="pass-field">
+            <input type="password" name="ValidatePassword" id="ValidatePassword" placeholder="Create Password">
+            <i class="fa-solid fa-eye"></i>
+        </div>
+        <div class="content">   
+            <p>Password must contain</p>
+            <ul class="requirement-list">
+                <li>
+                    <i class="fa-solid fa-circle"></i>
+                    <span>At least 8 characters long</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-circle"></i>
+                    <span>At least 1 number (0...9)</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-circle"></i>
+                    <span>At least 1 lowercase letter (a - z)</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-circle"></i>
+                    <span>At least 1 uppercase letter(A - Z)</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-circle"></i>
+                    <span>At least 1 special character (!...$)</span>
+                </li>
+            </ul>
+        </div>  
     </div>
     <script src="./script.js"></script>
 </body>

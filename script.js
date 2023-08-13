@@ -31,7 +31,7 @@ function Strength(password) {
 updating the visual representation of the password strength. */
 let container = document.querySelector(".container")
 document.addEventListener("keyup", function(e) {
-    let password = document.querySelector("#YourPassword").value;
+    let password = document.querySelector("#CheckPassword").value;
 
     let strength = Strength(password);
     if (strength <= 2) {
@@ -50,7 +50,7 @@ document.addEventListener("keyup", function(e) {
 });
 
 /* This code is responsible for toggling the visibility of the password input field. */
-let password = document.querySelector('#YourPassword');
+let password = document.querySelector('#CheckPassword');
 let show = document.querySelector('.show');
 show.onclick = function () {
     if(password.type === "password") {
@@ -61,3 +61,44 @@ show.onclick = function () {
         show.classList.remove("hide");
     }
 };
+
+
+// JS CODES FOR PASSWORD VALIDATION CHECKER //
+
+const passwordInput = document.querySelector(".pass-field input");
+const eyeIcon = document.querySelector(".pass-field i");
+const requirementList = document.querySelectorAll(".requirement-list li");
+
+// An array of password requirements with corresponding 
+// regular expressions and index of the requirement list item
+const requirements = [
+    { regex: /.{8,}/, index: 0}, //Mininum of 8 characters
+    { regex:/\d/ , index:1 },      //At least one number
+    { regex:/[a-z]/, index :2 },   //At least one lowercase letter
+    { regex:/[A-Z]/ , index:3 },    //At least on uppercase letter
+    { regex:/[^a-zA-Z\d]/ , index:4 }     //At least one special character
+]
+
+passwordInput.addEventListener ("keyup", (e) => {
+    requirements.forEach(item => {
+        // Check if the password matches the requirement regex
+        const isValid = item.regex.test(e.target.value);
+        const requirementItem = requirementList[item.index];
+
+        // Updating class and icon of requirement item if requirement matched or not
+        if (isValid) {
+            requirementItem.classList.add("valid");
+            requirementItem.firstElementChild.className = "fa-solid fa-check";
+        } else {
+            requirementItem.classList.remove("valid");
+            requirementItem.firstElementChild.className = "fa-solid fa-circle";
+        }
+    });
+});
+
+eyeIcon.addEventListener("click", () => {
+    // Toggle the password input type between "password" and "text"
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    // Update the eye icon class based on the password input type
+    eyeIcon.className = `fa-solid fa-eye${passwordInput.type === "password" ? "" : "-slash"}`;
+});
